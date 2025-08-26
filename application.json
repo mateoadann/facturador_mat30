@@ -1,5 +1,8 @@
 {
   "appIsExample": false,
+  "appLayout": {
+    "type": "DESKTOP"
+  },
   "applicationDetail": {
     "appPositioning": {
       "type": "FIXED"
@@ -18,10 +21,25 @@
   "icon": "globe",
   "pages": [
     {
-      "id": "Page1",
+      "id": "Authentication",
+      "isDefault": false
+    },
+    {
+      "id": "Home",
       "isDefault": true
+    },
+    {
+      "id": "Facturar",
+      "isDefault": false
+    },
+    {
+      "id": "Ver_Facturas",
+      "isDefault": false
     }
   ],
+  "unpublishedAppLayout": {
+    "type": "DESKTOP"
+  },
   "unpublishedApplicationDetail": {
     "appPositioning": {
       "type": "FIXED"
