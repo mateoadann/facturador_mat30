@@ -37,6 +37,9 @@
     },
     {
       "key": "groupButtons.groupButton2.onClick"
+    },
+    {
+      "key": "groupButtons.groupButton7iezkuflb0.onClick"
     }
   ],
   "groupButtons": {
@@ -82,6 +85,7 @@
       "itemType": "BUTTON",
       "label": "Importar",
       "menuItems": {},
+      "onClick": "{{showModal(importar_facturar.name);}}",
       "placement": "CENTER",
       "variant": "filled",
       "widgetId": "leb5ti3k76"

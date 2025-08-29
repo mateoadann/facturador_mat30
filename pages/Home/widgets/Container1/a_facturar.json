@@ -48,7 +48,7 @@
   "rightColumn": 25,
   "text": "Facturar",
   "tooltip": "",
-  "topRow": 1,
+  "topRow": 0,
   "type": "BUTTON_WIDGET",
   "version": 1,
   "widgetId": "ffhiwsk79a",

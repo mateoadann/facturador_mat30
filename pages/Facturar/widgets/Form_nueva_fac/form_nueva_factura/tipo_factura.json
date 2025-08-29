@@ -2,8 +2,8 @@
   "accentColor": "{{appsmith.theme.colors.primaryColor}}",
   "animateLoading": true,
   "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
-  "bottomRow": 15,
-  "boxShadow": "none",
+  "bottomRow": 32,
+  "boxShadow": "0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)",
   "defaultOptionValue": "",
   "dynamicBindingPathList": [
     {
@@ -19,7 +19,11 @@
       "key": "sourceData"
     }
   ],
-  "dynamicTriggerPathList": [],
+  "dynamicTriggerPathList": [
+    {
+      "key": "onDropdownOpen"
+    }
+  ],
   "isDisabled": false,
   "isFilterable": false,
   "isLoading": false,
@@ -32,7 +36,7 @@
   "labelText": "Tipo de factura",
   "labelTextSize": "0.875rem",
   "labelWidth": 5,
-  "leftColumn": 0,
+  "leftColumn": 20,
   "maxDynamicHeight": 9000,
   "minDynamicHeight": 4,
   "minWidth": 450,
@@ -41,18 +45,21 @@
   "mobileRightColumn": 20,
   "mobileTopRow": 16,
   "needsErrorInfo": false,
+  "onDropdownOpen": "{{resetWidget(\"tipo_factura\", true);}}",
   "optionLabel": "name",
   "optionValue": "code",
+  "originalBottomRow": 32,
+  "originalTopRow": 24,
   "parentColumnSpace": 10.4375,
   "parentId": "dbzmq7gt44",
   "parentRowSpace": 10,
   "placeholderText": "Tipo de Factura",
   "renderMode": "CANVAS",
   "responsiveBehavior": "fill",
-  "rightColumn": 37,
+  "rightColumn": 41,
   "serverSideFiltering": false,
-  "sourceData": "[\n  {\n    \"name\": \"C\",\n    \"code\": \"11\"\n  },\n  {\n    \"name\": \"B\",\n    \"code\": \"6\"\n  },\n  {\n    \"name\": \"A\",\n    \"code\": \"1\"\n  }\n]",
-  "topRow": 8,
+  "sourceData": "[\n  {\n    \"name\": \"C\",\n    \"code\": 11\n  },\n  {\n    \"name\": \"B\",\n    \"code\": 6\n  },\n  {\n    \"name\": \"A\",\n    \"code\": 1\n  }\n]",
+  "topRow": 24,
   "type": "SELECT_WIDGET",
   "version": 1,
   "widgetId": "nnjtgfn4te",

@@ -1,7 +1,7 @@
 {
   "animateLoading": true,
   "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
-  "bottomRow": 11,
+  "bottomRow": 16,
   "dynamicBindingPathList": [
     {
       "key": "truncateButtonColor"
@@ -14,37 +14,44 @@
     }
   ],
   "dynamicHeight": "AUTO_HEIGHT",
+  "dynamicPropertyPathList": [
+    {
+      "key": "fontSize"
+    }
+  ],
   "dynamicTriggerPathList": [],
   "fontFamily": "{{appsmith.theme.fontFamily.appFont}}",
-  "fontSize": "1.25rem",
-  "fontStyle": "BOLD",
+  "fontSize": "1.1rem",
+  "fontStyle": "",
   "isLoading": false,
   "isVisible": true,
-  "key": "2q078nfmth",
-  "leftColumn": 5,
+  "key": "qd8lcp08j1",
+  "leftColumn": 0,
   "maxDynamicHeight": 9000,
   "minDynamicHeight": 4,
   "minWidth": 450,
-  "mobileBottomRow": 5,
+  "mobileBottomRow": 10,
   "mobileLeftColumn": 1,
-  "mobileRightColumn": 41,
-  "mobileTopRow": 1,
+  "mobileRightColumn": 17,
+  "mobileTopRow": 6,
   "needsErrorInfo": false,
-  "originalBottomRow": 13,
-  "originalTopRow": 7,
+  "originalBottomRow": 16,
+  "originalTopRow": 9,
   "overflow": "NONE",
-  "parentId": "dd74tt61mx",
+  "parentColumnSpace": 10.3125,
+  "parentId": "5mm901z986",
+  "parentRowSpace": 10,
   "renderMode": "CANVAS",
   "responsiveBehavior": "fill",
-  "rightColumn": 56,
+  "rightColumn": 64,
   "shouldTruncate": false,
-  "text": "Está seguro que quiere eliminar la factura?",
+  "text": "- Descargar la plantilla y rellenar los datos según el formato \n- Importar sólo la primera hoja de cálculo \n- No cambiar la cabecera de la plantilla para evitar fallos en la importación",
   "textAlign": "LEFT",
   "textColor": "#231F20",
-  "topRow": 7,
+  "topRow": 9,
   "truncateButtonColor": "{{appsmith.theme.colors.primaryColor}}",
   "type": "TEXT_WIDGET",
   "version": 1,
-  "widgetId": "lxjcxq608n",
-  "widgetName": "Text2"
+  "widgetId": "182kmvfxcy",
+  "widgetName": "Text3Copy"
 }

@@ -1,14 +1,14 @@
 {
   "animateLoading": true,
   "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
-  "bottomRow": 24,
+  "bottomRow": 730,
   "boxShadow": "none",
   "canEscapeKeyClose": true,
   "canOutsideClickClose": true,
   "children": [
     {
       "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
-      "bottomRow": 810,
+      "bottomRow": 680,
       "boxShadow": "{{appsmith.theme.boxShadow.appBoxShadow}}",
       "canExtend": true,
       "detachFromLayout": true,
@@ -29,7 +29,7 @@
       "leftColumn": 0,
       "maxDynamicHeight": 9000,
       "minDynamicHeight": 4,
-      "minHeight": 670,
+      "minHeight": 680,
       "minWidth": 450,
       "mobileBottomRow": 240,
       "mobileLeftColumn": 0,
@@ -56,21 +56,23 @@
       "key": "borderRadius"
     }
   ],
-  "dynamicHeight": "FIXED",
+  "dynamicHeight": "AUTO_HEIGHT",
   "dynamicTriggerPathList": [],
-  "height": 670,
+  "height": 680,
   "isCanvas": true,
   "isLoading": false,
   "key": "zz8ele0t3s",
   "leftColumn": 16,
   "maxDynamicHeight": 9000,
-  "minDynamicHeight": 24,
+  "minDynamicHeight": 10,
   "minHeight": 240,
   "mobileBottomRow": 74,
   "mobileLeftColumn": 16,
   "mobileRightColumn": 40,
   "mobileTopRow": 50,
   "needsErrorInfo": false,
+  "originalBottomRow": 24,
+  "originalTopRow": 50,
   "parentColumnSpace": 19.8125,
   "parentId": "0",
   "parentRowSpace": 10,
@@ -82,5 +84,5 @@
   "version": 2,
   "widgetId": "fu1so1ktsu",
   "widgetName": "Form_nueva_fac",
-  "width": 688
+  "width": 1044
 }

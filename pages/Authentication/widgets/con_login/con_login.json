@@ -55,7 +55,7 @@
   "isLoading": false,
   "isVisible": true,
   "key": "wa7a1coj08",
-  "leftColumn": 3,
+  "leftColumn": 0,
   "maxDynamicHeight": 9000,
   "minDynamicHeight": 10,
   "minWidth": 450,
@@ -66,7 +66,7 @@
   "parentRowSpace": 10,
   "renderMode": "CANVAS",
   "responsiveBehavior": "fill",
-  "rightColumn": 49,
+  "rightColumn": 64,
   "searchTags": [
     "div",
     "parent",

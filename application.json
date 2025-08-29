@@ -35,6 +35,14 @@
     {
       "id": "Ver_Facturas",
       "isDefault": false
+    },
+    {
+      "id": "Facturador",
+      "isDefault": false
+    },
+    {
+      "id": "Receptor",
+      "isDefault": false
     }
   ],
   "unpublishedAppLayout": {

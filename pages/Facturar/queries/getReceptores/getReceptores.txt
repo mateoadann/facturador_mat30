@@ -1,0 +1,1 @@
+SELECT id,cuit, razon_social, name FROM public.receptor ;

@@ -1,0 +1,2 @@
+INSERT INTO public."facturar" ("fac_tipo", "facturador_id", "receptor_id", "pto_vnta", "fac_fecha_desde", "fac_fecha_hasta", "fac_fecha_vto", "imp_total", "fac_concepto", "created_by", "updated_at", "updated_by")
+  VALUES ({{Number(tipo_factura.selectedOptionValue)}}, {{cuit_facturador.selectedOptionValue}}, {{cuit_receptor.selectedOptionValue}}, 1, {{fac_fecha_desde.selectedDate}}, {{fac_fecha_hasta.selectedDate}}, {{fac_fecha_vto.selectedDate}}, '', {{fac_concepto.selectedOptionValue}}, '', TIMESTAMP '2019-07-01 10:00:00', '');

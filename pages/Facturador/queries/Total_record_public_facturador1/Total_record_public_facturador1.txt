@@ -1,0 +1,1 @@
+SELECT COUNT(*) from public.facturador where razon_social ilike '%{{Table1.searchText}}%';

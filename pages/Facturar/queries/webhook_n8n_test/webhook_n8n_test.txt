@@ -1,0 +1,4 @@
+{
+  "file": {{ import_file.files[0].data }},
+  "fileName": {{ import_file.files[0].name }}
+}
