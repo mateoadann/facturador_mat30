@@ -46,7 +46,7 @@
     "updated_by",
     "EditActions1"
   ],
-  "columnUpdatedAt": 1756240369877,
+  "columnUpdatedAt": 1756596739999,
   "columnWidthMap": {},
   "customIsLoading": false,
   "customIsLoadingValue": "",
@@ -147,9 +147,6 @@
     },
     {
       "key": "onAddNewRowSave"
-    },
-    {
-      "key": "primaryColumns.EditActions1.onSave"
     }
   ],
   "enableClientSideSearch": false,
@@ -197,7 +194,6 @@
       "discardIconAlign": "left",
       "enableFilter": true,
       "enableSort": true,
-      "horizontalAlignment": "LEFT",
       "id": "EditActions1",
       "index": 10,
       "isCellEditable": false,
@@ -212,17 +208,14 @@
       "isVisible": true,
       "label": "Save / Discard",
       "notation": "standard",
-      "onSave": "{{Update_public_facturador1.run(() => {\n            showAlert(\"Successfully saved!\");\n            Select_public_facturador1.run()\n          }, () => {\n            showAlert(\"Unable to save!\");\n          })}}",
       "originalId": "EditActions1",
       "saveActionLabel": "Save",
       "saveBorderRadius": "{{Table1.processedTableData.map((currentRow, currentIndex) => ( (appsmith.theme.borderRadius.appBorderRadius)))}}",
       "saveButtonColor": "{{Table1.processedTableData.map((currentRow, currentIndex) => ( (appsmith.theme.colors.primaryColor)))}}",
       "saveIconAlign": "left",
       "sticky": "right",
-      "textSize": "0.875rem",
       "thousandSeparator": true,
       "validation": {},
-      "verticalAlignment": "CENTER",
       "width": 150
     },
     "cond_iva": {
@@ -410,6 +403,7 @@
       "horizontalAlignment": "LEFT",
       "id": "fecha_ini_act",
       "index": 5,
+      "inputFormat": "YYYY-MM-DD HH:mm",
       "isCellEditable": true,
       "isCellVisible": true,
       "isDerived": false,
@@ -421,6 +415,7 @@
       "label": "fecha_ini_act",
       "notation": "standard",
       "originalId": "fecha_ini_act",
+      "outputFormat": "DD/MM/YYYY",
       "sticky": "",
       "textColor": "",
       "textSize": "0.875rem",

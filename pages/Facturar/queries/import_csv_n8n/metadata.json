@@ -1,6 +1,6 @@
 {
   "gitSyncId": "68a8672a233367326da8b15f_90933a7d-342f-4c0e-8f65-3a7ae331b806",
-  "id": "Facturar_webhook_n8n_test",
+  "id": "Facturar_import_csv_n8n",
   "pluginId": "restapi-plugin",
   "pluginType": "API",
   "unpublishedAction": {
@@ -11,7 +11,7 @@
           "value": "application/json"
         }
       ],
-      "body": "{\n  \"file\": {{ import_file.files[0].data }},\n  \"fileName\": {{ import_file.files[0].name }}\n}",
+      "body": "{\n  \"file\": {{ import_file.files[0].data }},\n  \"fileName\": {{ import_file.files[0].name }},\n\t\"fileType\":{{import_file.files[0].type}}\n}",
       "bodyFormData": [
         {
           "key": "file",
@@ -60,7 +60,7 @@
       }
     ],
     "executeOnLoad": false,
-    "name": "webhook_n8n_test",
+    "name": "import_csv_n8n",
     "pageId": "Facturar",
     "userSetOnLoad": false
   }

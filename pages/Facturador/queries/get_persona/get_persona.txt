@@ -1,0 +1,3 @@
+{
+	"cuit_consulta":"{{get_persona_form.data.cuit_input}}"
+}

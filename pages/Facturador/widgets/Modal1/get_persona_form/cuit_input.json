@@ -1,0 +1,75 @@
+{
+  "accentColor": "{{appsmith.theme.colors.primaryColor}}",
+  "animateLoading": true,
+  "autoFocus": false,
+  "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
+  "bottomRow": 13,
+  "boxShadow": "none",
+  "defaultText": "",
+  "dynamicBindingPathList": [
+    {
+      "key": "accentColor"
+    },
+    {
+      "key": "borderRadius"
+    }
+  ],
+  "dynamicHeight": "AUTO_HEIGHT",
+  "dynamicTriggerPathList": [
+    {
+      "key": "onTextChanged"
+    },
+    {
+      "key": "onBlur"
+    }
+  ],
+  "errorMessage": "Cuit Inválido, debe contener 11 dígitos.",
+  "iconAlign": "left",
+  "inputType": "NUMBER",
+  "isDisabled": false,
+  "isLoading": false,
+  "isRequired": true,
+  "isSpellCheck": false,
+  "isVisible": true,
+  "key": "ai2iio9ly4",
+  "label": "",
+  "labelAlignment": "right",
+  "labelPosition": "Top",
+  "labelStyle": "",
+  "labelTextSize": "0.875rem",
+  "labelWidth": 5,
+  "leftColumn": 2,
+  "maxChars": "11",
+  "maxDynamicHeight": 9000,
+  "maxNum": "99999999999",
+  "minDynamicHeight": 4,
+  "minNum": "10000000000",
+  "minWidth": 450,
+  "mobileBottomRow": 15,
+  "mobileLeftColumn": 2,
+  "mobileRightColumn": 22,
+  "mobileTopRow": 8,
+  "needsErrorInfo": false,
+  "onBlur": "",
+  "onTextChanged": "{{resetWidget(\"datos_f_form\", true);}}",
+  "originalBottomRow": 13,
+  "originalTopRow": 8,
+  "parentColumnSpace": 7.1923828125,
+  "parentId": "t23bkl632t",
+  "parentRowSpace": 10,
+  "placeholderText": "Cuit Facturador",
+  "renderMode": "CANVAS",
+  "resetOnSubmit": true,
+  "responsiveBehavior": "fill",
+  "rightColumn": 54,
+  "shouldAllowAutofill": false,
+  "shouldScrollContents": true,
+  "showStepArrows": false,
+  "tooltip": "",
+  "topRow": 8,
+  "type": "INPUT_WIDGET_V2",
+  "validation": "",
+  "version": 2,
+  "widgetId": "2882xchrt1",
+  "widgetName": "cuit_input"
+}
