@@ -1,16 +1,16 @@
 {
-  "gitSyncId": "68a8672a233367326da8b15f_5acb1e6e-742a-4feb-9256-1018061cb3f2",
-  "id": "Facturar_Total_record_public_facturar1",
+  "gitSyncId": "68a8672a233367326da8b15f_06753af3-9120-4c91-817e-fedebb2d892a",
+  "id": "Facturar_Delete_facturar",
   "pluginId": "postgres-plugin",
   "pluginType": "DB",
   "unpublishedAction": {
     "actionConfiguration": {
-      "body": "SELECT COUNT(*) from public.facturar where status ilike '%{{table_facturar.searchText}}%';",
+      "body": "SELECT public.delete_facturar_batch( {{ table_facturar.selectedRows.map(r => r.id) }}::uuid[] ) AS borrados;\n",
       "encodeParamsToggle": true,
       "paginationType": "NONE",
       "pluginSpecifiedTemplates": [
         {
-          "value": false
+          "value": true
         }
       ],
       "timeoutInMillisecond": 10000
@@ -27,8 +27,8 @@
         "key": "body"
       }
     ],
-    "executeOnLoad": true,
-    "name": "Total_record_public_facturar1",
+    "executeOnLoad": false,
+    "name": "Delete_facturar",
     "pageId": "Facturar",
     "userSetOnLoad": false
   }

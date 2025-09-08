@@ -1,0 +1,6 @@
+SELECT 
+  lote_nombre,
+  COUNT(*) AS cantidad_registros
+FROM facturar
+GROUP BY lote_nombre
+ORDER BY cantidad_registros DESC;

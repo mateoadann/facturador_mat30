@@ -1,0 +1,21 @@
+SELECT 
+  f.id,
+  f.status,
+  f.fac_fecha_desde,
+  f.fac_fecha_hasta,
+  f.fac_fecha_vto,
+  f.lote_nombre,
+  f.facturador_id,
+  fac.razon_social AS facturador_razon_social,
+  f.receptor_id,
+  rec.razon_social AS receptor_razon_social,
+	f.imp_total,
+	f.fac_concepto,
+	f.fac_tipo,
+	f.fac_detalle,
+	f.fac_unidades,
+	f.fac_pcio_unit,
+	f.email
+FROM public.facturar f
+LEFT JOIN public.facturador fac ON f.facturador_id = fac.id
+LEFT JOIN public.receptor rec ON f.receptor_id = rec.id

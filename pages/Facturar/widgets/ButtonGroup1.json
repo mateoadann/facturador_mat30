@@ -21,6 +21,9 @@
     },
     {
       "key": "groupButtons.groupButton7iezkuflb0.buttonColor"
+    },
+    {
+      "key": "groupButtons.groupButton2.isVisible"
     }
   ],
   "dynamicPropertyPathList": [
@@ -29,6 +32,9 @@
     },
     {
       "key": "groupButtons.groupButton1.isVisible"
+    },
+    {
+      "key": "groupButtons.groupButton2.isVisible"
     }
   ],
   "dynamicTriggerPathList": [
@@ -66,8 +72,8 @@
       "id": "groupButton2",
       "index": 1,
       "isDisabled": false,
-      "isVisible": true,
-      "label": "Borrar",
+      "isVisible": "{{ table_facturar.selectedRows.length > 0 }}",
+      "label": "Eliminar",
       "menuItems": {},
       "onClick": "{{showModal(fac_borrar.name);}}",
       "placement": "CENTER",

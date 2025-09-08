@@ -1,6 +1,6 @@
 {
-  "gitSyncId": "68a8672a233367326da8b15f_d32509e0-5d43-440c-b159-37549f16c1ad",
-  "id": "Facturador_get_persona",
+  "gitSyncId": "68a8672a233367326da8b15f_22908a33-2b68-4384-b12b-b8acc07d739c",
+  "id": "Facturar_start_facturacion_lote",
   "pluginId": "restapi-plugin",
   "pluginType": "API",
   "unpublishedAction": {
@@ -11,7 +11,7 @@
           "value": "application/json"
         }
       ],
-      "body": "{\n\t\"cuit_consulta\":\"{{get_persona_form.data.cuit_input}}\"\n}",
+      "body": "{\n\t\"lote_a_facturar\": {{Lotes_importados.selectedOptionValue}}\n}",
       "bodyFormData": [],
       "encodeParamsToggle": true,
       "formData": {
@@ -21,7 +21,7 @@
       "httpMethod": "POST",
       "httpVersion": "HTTP11",
       "paginationType": "NONE",
-      "path": "/webhook-test/3fd30651-7d40-48f7-b9de-42db0ba99662",
+      "path": "/webhook-test/3ba2924b-d42d-4c96-aac1-fa196d0d600a",
       "pluginSpecifiedTemplates": [
         {
           "value": true
@@ -45,8 +45,8 @@
       }
     ],
     "executeOnLoad": false,
-    "name": "get_persona",
-    "pageId": "Facturador",
+    "name": "start_facturacion_lote",
+    "pageId": "Facturar",
     "userSetOnLoad": false
   }
 }

@@ -1,0 +1,1 @@
+SELECT public.delete_facturar_batch( {{ table_facturar.selectedRows.map(r => r.id) }}::uuid[] ) AS borrados;
