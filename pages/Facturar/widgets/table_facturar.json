@@ -62,9 +62,7 @@
   "customIsLoadingValue": "",
   "defaultPageSize": 0,
   "defaultSelectedRowIndex": 0,
-  "defaultSelectedRowIndices": [
-    0
-  ],
+  "defaultSelectedRowIndices": "[]",
   "delimiter": ",",
   "dynamicBindingPathList": [
     {

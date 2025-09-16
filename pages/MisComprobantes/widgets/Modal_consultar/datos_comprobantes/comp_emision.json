@@ -2,18 +2,15 @@
   "accentColor": "{{appsmith.theme.colors.primaryColor}}",
   "animateLoading": true,
   "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
-  "bottomRow": 14,
+  "bottomRow": 20,
   "boxShadow": "none",
-  "defaultOptionValue": "",
+  "defaultOptionValue": "Emitido",
   "dynamicBindingPathList": [
     {
       "key": "accentColor"
     },
     {
       "key": "borderRadius"
-    },
-    {
-      "key": "sourceData"
     }
   ],
   "dynamicHeight": "FIXED",
@@ -22,46 +19,41 @@
       "key": "sourceData"
     }
   ],
-  "dynamicTriggerPathList": [
-    {
-      "key": "onDropdownOpen"
-    }
-  ],
+  "dynamicTriggerPathList": [],
   "isDisabled": false,
   "isFilterable": false,
   "isLoading": false,
   "isRequired": true,
   "isVisible": true,
-  "key": "rg6z7qfdyg",
+  "key": "wqvr9smhjp",
   "labelAlignment": "left",
   "labelPosition": "Top",
-  "labelText": "Lotes Importados",
+  "labelText": "Tipo de emisión del comprobante",
   "labelTextSize": "0.875rem",
   "labelWidth": 5,
-  "leftColumn": 1,
+  "leftColumn": 0,
   "maxDynamicHeight": 9000,
   "minDynamicHeight": 4,
   "minWidth": 450,
   "mobileBottomRow": 13,
-  "mobileLeftColumn": 2,
-  "mobileRightColumn": 22,
+  "mobileLeftColumn": 3,
+  "mobileRightColumn": 23,
   "mobileTopRow": 6,
   "needsErrorInfo": false,
-  "onDropdownOpen": "{{resetWidget(\"Lotes_importados\", true);\nget_lotes_name.run()}}",
-  "optionLabel": "label",
-  "optionValue": "value",
-  "parentColumnSpace": 6.9375,
-  "parentId": "ae788wd4j6",
+  "optionLabel": "name",
+  "optionValue": "code",
+  "parentColumnSpace": 8.125,
+  "parentId": "fv75o9vn7b",
   "parentRowSpace": 10,
-  "placeholderText": "",
+  "placeholderText": "Select option",
   "renderMode": "CANVAS",
   "responsiveBehavior": "fill",
-  "rightColumn": 64,
+  "rightColumn": 30,
   "serverSideFiltering": false,
-  "sourceData": "{{\n  get_lotes_name.data.map(obj => ({\n    label: `${obj.lote_nombre} (${obj.cantidad_registros})`, // lo que ve el usuario\n    value: obj.lote_nombre                                     // lo que guarda el Select\n  }))\n}}\n",
-  "topRow": 6,
+  "sourceData": "[\n  {\n    \"name\": \"Emitido\",\n    \"code\": \"E\"\n  },\n  {\n    \"name\": \"Recibido\",\n    \"code\": \"R\"\n  }\n]",
+  "topRow": 13,
   "type": "SELECT_WIDGET",
   "version": 1,
-  "widgetId": "ifxxs88te3",
-  "widgetName": "Lotes_importados"
+  "widgetId": "j00tmeuqak",
+  "widgetName": "comp_emision"
 }

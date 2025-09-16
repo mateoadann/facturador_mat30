@@ -1,11 +1,11 @@
 {
   "animateLoading": true,
   "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
-  "bottomRow": 19,
+  "bottomRow": 45,
   "boxShadow": "none",
   "buttonColor": "{{appsmith.theme.colors.primaryColor}}",
-  "buttonVariant": "PRIMARY",
-  "disabledWhenInvalid": true,
+  "buttonVariant": "SECONDARY",
+  "disabledWhenInvalid": false,
   "dynamicBindingPathList": [
     {
       "key": "buttonColor"
@@ -14,7 +14,6 @@
       "key": "borderRadius"
     }
   ],
-  "dynamicPropertyPathList": [],
   "dynamicTriggerPathList": [
     {
       "key": "onClick"
@@ -24,28 +23,28 @@
   "isDisabled": false,
   "isLoading": false,
   "isVisible": true,
-  "key": "sj0se4d3q7",
-  "leftColumn": 43,
+  "key": "dcc6lkxo0x",
+  "leftColumn": 30,
   "minWidth": 120,
   "mobileBottomRow": 37,
-  "mobileLeftColumn": 46,
-  "mobileRightColumn": 62,
+  "mobileLeftColumn": 30,
+  "mobileRightColumn": 46,
   "mobileTopRow": 33,
   "needsErrorInfo": false,
-  "onClick": "{{ger_cuit_call.buscarYCompletar();}}",
-  "originalBottomRow": 17,
-  "originalTopRow": 13,
-  "parentId": "t23bkl632t",
+  "onClick": "{{closeModal(Modal_consultar.name);}}",
+  "originalBottomRow": 37,
+  "originalTopRow": 33,
+  "parentId": "fv75o9vn7b",
   "placement": "CENTER",
   "recaptchaType": "V3",
   "renderMode": "CANVAS",
   "resetFormOnClick": true,
   "responsiveBehavior": "hug",
-  "rightColumn": 59,
-  "text": "Afip/Arca",
-  "topRow": 15,
+  "rightColumn": 46,
+  "text": "Cancelar",
+  "topRow": 41,
   "type": "BUTTON_WIDGET",
   "version": 1,
-  "widgetId": "7522lerwqf",
-  "widgetName": "enviar"
+  "widgetId": "yfbq7782g0",
+  "widgetName": "cancel_consultar"
 }

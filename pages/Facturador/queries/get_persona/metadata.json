@@ -21,7 +21,7 @@
       "httpMethod": "POST",
       "httpVersion": "HTTP11",
       "paginationType": "NONE",
-      "path": "/webhook-test/3fd30651-7d40-48f7-b9de-42db0ba99662",
+      "path": "/webhook/3fd30651-7d40-48f7-b9de-42db0ba99662",
       "pluginSpecifiedTemplates": [
         {
           "value": true

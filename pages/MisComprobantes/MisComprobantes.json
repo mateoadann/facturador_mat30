@@ -1,24 +1,23 @@
 {
-  "gitSyncId": "68a8664b233367326da8b15a_7806e95c-6e56-462c-b9de-5d7a82540ed8",
+  "gitSyncId": "68a8672a233367326da8b15f_29dd46de-671f-43e5-aa52-72f2ae8721cc",
   "unpublishedPage": {
     "isHidden": false,
     "layouts": [
       {
         "dsl": {
           "backgroundColor": "none",
-          "bottomRow": 450,
+          "bottomRow": 380,
           "canExtend": true,
           "containerStyle": "none",
           "detachFromLayout": true,
           "dynamicBindingPathList": [],
-          "dynamicTriggerPathList": [],
           "leftColumn": 0,
-          "minHeight": 1292,
+          "minHeight": 960,
           "parentColumnSpace": 1,
           "parentRowSpace": 1,
-          "rightColumn": 4896,
+          "rightColumn": 1224,
           "snapColumns": 64,
-          "snapRows": 124,
+          "snapRows": 94,
           "topRow": 0,
           "type": "CANVAS_WIDGET",
           "version": 91,
@@ -27,7 +26,7 @@
         }
       }
     ],
-    "name": "Home",
-    "slug": "home"
+    "name": "MisComprobantes",
+    "slug": "miscomprobantes"
   }
 }

@@ -1,0 +1,55 @@
+{
+  "allowedFileTypes": "[\n\t\".csv\"\n]",
+  "animateLoading": true,
+  "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
+  "bottomRow": 35,
+  "boxShadow": "none",
+  "buttonColor": "{{appsmith.theme.colors.primaryColor}}",
+  "dynamicBindingPathList": [
+    {
+      "key": "borderRadius"
+    },
+    {
+      "key": "buttonColor"
+    }
+  ],
+  "dynamicPropertyPathList": [
+    {
+      "key": "allowedFileTypes"
+    }
+  ],
+  "dynamicTriggerPathList": [],
+  "dynamicTyping": true,
+  "fileDataType": "Binary",
+  "files": [],
+  "isDefaultClickDisabled": true,
+  "isDisabled": false,
+  "isLoading": false,
+  "isRequired": true,
+  "isVisible": true,
+  "key": "zpq5f3ya7y",
+  "label": "Importar Archivo",
+  "leftColumn": 2,
+  "maxFileSize": "100",
+  "maxNumFiles": "1",
+  "minWidth": 120,
+  "mobileBottomRow": 34,
+  "mobileLeftColumn": 1,
+  "mobileRightColumn": 17,
+  "mobileTopRow": 30,
+  "needsErrorInfo": false,
+  "originalBottomRow": 35,
+  "originalTopRow": 29,
+  "parentColumnSpace": 10.25,
+  "parentId": "xyt183gwgu",
+  "parentRowSpace": 10,
+  "renderMode": "CANVAS",
+  "responsiveBehavior": "hug",
+  "rightColumn": 20,
+  "selectedFiles": [],
+  "topRow": 29,
+  "type": "FILE_PICKER_WIDGET_V2",
+  "version": 1,
+  "widgetId": "4c0omjf9xg",
+  "widgetName": "import_consulta"
+}

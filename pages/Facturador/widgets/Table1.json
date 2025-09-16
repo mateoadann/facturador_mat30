@@ -5,7 +5,7 @@
   "borderColor": "#E0DEDE",
   "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
   "borderWidth": "1",
-  "bottomRow": 53,
+  "bottomRow": 41,
   "boxShadow": "{{appsmith.theme.boxShadow.appBoxShadow}}",
   "canFreezeColumn": true,
   "childStylesheet": {
@@ -46,7 +46,7 @@
     "updated_by",
     "EditActions1"
   ],
-  "columnUpdatedAt": 1756596739999,
+  "columnUpdatedAt": 1757591510256,
   "columnWidthMap": {},
   "customIsLoading": false,
   "customIsLoadingValue": "",
@@ -213,7 +213,7 @@
       "saveBorderRadius": "{{Table1.processedTableData.map((currentRow, currentIndex) => ( (appsmith.theme.borderRadius.appBorderRadius)))}}",
       "saveButtonColor": "{{Table1.processedTableData.map((currentRow, currentIndex) => ( (appsmith.theme.colors.primaryColor)))}}",
       "saveIconAlign": "left",
-      "sticky": "right",
+      "sticky": "",
       "thousandSeparator": true,
       "validation": {},
       "width": 150
@@ -637,7 +637,7 @@
   "showInlineEditingOptionDropdown": true,
   "tableData": "{{Select_public_facturador1.data}}",
   "textSize": "0.875rem",
-  "topRow": 25,
+  "topRow": 13,
   "totalRecordsCount": "{{Total_record_public_facturador1.data[0].count}}",
   "type": "TABLE_WIDGET_V2",
   "version": 2,

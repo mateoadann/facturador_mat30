@@ -1,0 +1,10 @@
+{
+	"cuit": "{{cuit_consulta.text}}",
+  "username": "{{cuit_consulta.text}}",
+  "password": "{{clave_arca.text}}",
+  "t": "{{comp_emision.selectedOptionValue}}",
+  "fechaDesde": "{{comp_desde.formattedDate}}",
+	"fechaHasta": "{{comp_hasta.formattedDate}}",
+  "puntosVenta": "{{punto_vta_nro.text}}",
+  "tiposComprobantes": "{{comp_tipo.selectedOptionValue}}"
+}

@@ -1,0 +1,27 @@
+
+SELECT 
+  f.id,
+  cae_nro,
+  cae_venc,
+  fac_nro,
+  pto_vnta,
+  pdf_url,
+  f.fac_fecha_desde,
+  f.fac_fecha_hasta,
+  f.fac_fecha_vto,
+  f.facturador_id,
+  fac.razon_social AS facturador_razon_social,
+  f.receptor_id,
+  rec.razon_social AS receptor_razon_social,
+  f.imp_total,
+  f.fac_concepto,
+  f.fac_tipo,
+  f.fac_detalle,
+  f.fac_unidades,
+  f.fac_pcio_unit,
+  f.email,
+	f.fac_fecha_emision
+  
+FROM public.facturas f
+LEFT JOIN public.facturador fac ON f.facturador_id = fac.id
+LEFT JOIN public.receptor  rec ON f.receptor_id = rec.id;

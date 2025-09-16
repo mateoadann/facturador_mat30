@@ -1,6 +1,6 @@
 {
-  "gitSyncId": "68a8672a233367326da8b15f_fa3caea6-c2aa-4cac-a118-a29e44935e56",
-  "id": "Facturar_p_import_csv_n8n",
+  "gitSyncId": "68a8672a233367326da8b15f_38a9a5a8-633e-4bed-a573-05e8c9264913",
+  "id": "MisComprobantes_consulta_masiva_comps",
   "pluginId": "restapi-plugin",
   "pluginType": "API",
   "unpublishedAction": {
@@ -16,7 +16,7 @@
         {
           "key": "file",
           "type": "File",
-          "value": "{{import_file.files[0]}}"
+          "value": "{{import_consulta.files[0]}}"
         }
       ],
       "encodeParamsToggle": true,
@@ -27,18 +27,13 @@
       "httpMethod": "POST",
       "httpVersion": "HTTP11",
       "paginationType": "NONE",
-      "path": "/webhook/024a5744-f14b-46a5-b703-f50e49e0506e",
+      "path": "/webhook-test/f7d7457b-0fdd-4224-a2d4-9031852d1dfa",
       "pluginSpecifiedTemplates": [
         {
           "value": true
         }
       ],
-      "queryParameters": [
-        {
-          "key": "user_name",
-          "value": "{{appsmith.user.name}}"
-        }
-      ],
+      "queryParameters": [],
       "timeoutInMillisecond": 10000
     },
     "confirmBeforeExecute": false,
@@ -52,18 +47,12 @@
     },
     "dynamicBindingPathList": [
       {
-        "key": "path"
-      },
-      {
-        "key": "queryParameters[0].value"
-      },
-      {
         "key": "bodyFormData[0].value"
       }
     ],
     "executeOnLoad": false,
-    "name": "p_import_csv_n8n",
-    "pageId": "Facturar",
+    "name": "consulta_masiva_comps",
+    "pageId": "MisComprobantes",
     "userSetOnLoad": false
   }
 }
