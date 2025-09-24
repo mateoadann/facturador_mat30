@@ -1,0 +1,3 @@
+{
+	"factura":"{{facturas.selectedRow.id}}"
+}

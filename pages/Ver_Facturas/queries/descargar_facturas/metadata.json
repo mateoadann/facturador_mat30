@@ -1,6 +1,6 @@
 {
-  "gitSyncId": "68a8672a233367326da8b15f_22908a33-2b68-4384-b12b-b8acc07d739c",
-  "id": "Facturar_start_facturacion_lote",
+  "gitSyncId": "68a8672a233367326da8b15f_e2216a65-5aa9-49c3-baff-10853fe36cfe",
+  "id": "Ver_Facturas_descargar_facturas",
   "pluginId": "restapi-plugin",
   "pluginType": "API",
   "unpublishedAction": {
@@ -11,7 +11,7 @@
           "value": "application/json"
         }
       ],
-      "body": "{\n\t\"lote_a_facturar\": {{Lotes_importados.selectedOptionValue}}\n}",
+      "body": "{\n\t\"factura\":\"{{facturas.selectedRow.id}}\"\n}",
       "bodyFormData": [],
       "encodeParamsToggle": true,
       "formData": {
@@ -21,7 +21,7 @@
       "httpMethod": "POST",
       "httpVersion": "HTTP11",
       "paginationType": "NONE",
-      "path": "/webhook/3ba2924b-d42d-4c96-aac1-fa196d0d600a",
+      "path": "/webhook-test/facturas/view",
       "pluginSpecifiedTemplates": [
         {
           "value": true
@@ -45,8 +45,8 @@
       }
     ],
     "executeOnLoad": false,
-    "name": "start_facturacion_lote",
-    "pageId": "Facturar",
+    "name": "descargar_facturas",
+    "pageId": "Ver_Facturas",
     "userSetOnLoad": false
   }
 }
