@@ -31,11 +31,11 @@
   "pages": [
     {
       "id": "Authentication",
-      "isDefault": false
+      "isDefault": true
     },
     {
       "id": "Home",
-      "isDefault": true
+      "isDefault": false
     },
     {
       "id": "Facturar",

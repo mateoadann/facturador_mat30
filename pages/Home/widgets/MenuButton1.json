@@ -21,7 +21,16 @@
       "key": "borderRadius"
     }
   ],
-  "dynamicTriggerPathList": [],
+  "dynamicPropertyPathList": [
+    {
+      "key": "menuItems.menuItem3.onClick"
+    }
+  ],
+  "dynamicTriggerPathList": [
+    {
+      "key": "menuItems.menuItem3.onClick"
+    }
+  ],
   "iconAlign": "left",
   "iconName": "menu",
   "isCompact": false,
@@ -51,6 +60,7 @@
       "isDisabled": false,
       "isVisible": true,
       "label": "Cerrar Sesión",
+      "onClick": "{{ Auth.logout() }}",
       "widgetId": ""
     }
   },

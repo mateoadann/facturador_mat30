@@ -57,7 +57,7 @@
       "widgetName": "Canvas2"
     }
   ],
-  "defaultTab": "{{functions.defaultTab}}",
+  "defaultTab": "{{Auth.defaultTab}}",
   "displayName": "Tabs",
   "dynamicBindingPathList": [
     {

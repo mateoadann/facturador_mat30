@@ -40,7 +40,7 @@
   "responsiveBehavior": "fill",
   "rightColumn": 44,
   "shouldTruncate": false,
-  "text": "Hola {{appsmith.user.name || appsmith.user.email}}",
+  "text": "Hola {{ appsmith.store.auth_user?.email || '' }}",
   "textAlign": "LEFT",
   "textColor": "#231F20",
   "topRow": 0,

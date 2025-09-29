@@ -1,0 +1,10 @@
+{
+  "accessor": [
+    "XMLParser"
+  ],
+  "defs": "{\"!name\":\"LIB/XMLParser\",\"XMLParser\":{\"!type\":\"fn()\",\"prototype\":{\"parse\":{\"!type\":\"fn()\",\"prototype\":{}},\"addEntity\":{\"!type\":\"fn()\",\"prototype\":{}}}}}",
+  "name": "fast-xml-parser",
+  "uidString": "XMLParser_https://cdnjs.cloudflare.com/ajax/libs/fast-xml-parser/4.3.2/fxparser.min.js",
+  "url": "https://cdnjs.cloudflare.com/ajax/libs/fast-xml-parser/4.3.2/fxparser.min.js",
+  "version": "4.3.2"
+}

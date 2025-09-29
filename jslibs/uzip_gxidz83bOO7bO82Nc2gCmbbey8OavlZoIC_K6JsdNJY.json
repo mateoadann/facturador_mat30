@@ -1,0 +1,10 @@
+{
+  "accessor": [
+    "uzip"
+  ],
+  "defs": "{\"!name\":\"LIB/uzip\",\"uzip\":{\"adler\":{\"!type\":\"fn()\",\"prototype\":{}},\"default\":{\"adler\":{\"!type\":\"fn()\",\"prototype\":{}},\"encode\":{\"!type\":\"fn()\",\"prototype\":{}},\"deflate\":{\"!type\":\"fn()\",\"prototype\":{}},\"deflateRaw\":{\"!type\":\"fn()\",\"prototype\":{}},\"inflate\":{\"!type\":\"fn()\",\"prototype\":{}},\"inflateRaw\":{\"!type\":\"fn()\",\"prototype\":{}},\"parse\":{\"!type\":\"fn()\",\"prototype\":{}}},\"deflate\":{\"!type\":\"fn()\",\"prototype\":{}},\"deflateRaw\":{\"!type\":\"fn()\",\"prototype\":{}},\"encode\":{\"!type\":\"fn()\",\"prototype\":{}},\"inflate\":{\"!type\":\"fn()\",\"prototype\":{}},\"inflateRaw\":{\"!type\":\"fn()\",\"prototype\":{}},\"parse\":{\"!type\":\"fn()\",\"prototype\":{}},\"__esModule\":{\"!type\":\"bool\"}}}",
+  "name": "uzip-module",
+  "uidString": "uzip_https://cdn.jsdelivr.net/npm/uzip-module@1.0.3/dist/uzip.js",
+  "url": "https://cdn.jsdelivr.net/npm/uzip-module@1.0.3/dist/uzip.js",
+  "version": "1.0.3"
+}
