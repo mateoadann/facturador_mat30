@@ -57,7 +57,7 @@
       "widgetName": "Canvas2"
     }
   ],
-  "defaultTab": "{{Auth.defaultTab}}",
+  "defaultTab": "",
   "displayName": "Tabs",
   "dynamicBindingPathList": [
     {
@@ -65,9 +65,6 @@
     },
     {
       "key": "borderRadius"
-    },
-    {
-      "key": "defaultTab"
     }
   ],
   "dynamicHeight": "AUTO_HEIGHT",
@@ -88,7 +85,7 @@
   "mobileLeftColumn": 37,
   "mobileRightColumn": 61,
   "mobileTopRow": 92,
-  "originalBottomRow": 55,
+  "originalBottomRow": 47,
   "originalTopRow": 0,
   "parentColumnSpace": 19.8125,
   "parentId": "oupq4ybxxj",

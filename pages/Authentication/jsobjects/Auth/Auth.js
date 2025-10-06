@@ -1,103 +1,109 @@
 export default {
-  TOKEN_KEY: "auth_token",
-  REFRESH_KEY: "refresh_token",
-  USER_KEY: "auth_user",
+  // === Config ===
+  PAGE_HOME: "Home",     // <-- cambiá por el nombre exacto
+  PAGE_LOGIN: "Authentication",   // <-- cambiá por el nombre exacto
+  _skewMs: 15000,	
 
-  // 1) Guardar y limpiar estado
-  async setSession({ access, refresh, user }) {
-    if (access) { await storeValue(this.TOKEN_KEY, access); }
-    if (refresh) { await storeValue(this.REFRESH_KEY, refresh); }
-    if (user) { await storeValue(this.USER_KEY, user); }
+  // === Utils ===
+  _now() { return Date.now(); },
+  _status(e) { return e?.responseMeta?.statusCode ?? e?.statusCode ?? e?.status ?? null; },
+  _msg(e) {
+    // Keycloak suele enviar error JSON en e.data
+    const data = e?.data || e?.responseData || {};
+    const err = (data.error || "").toLowerCase();
+    const desc = data.error_description || data.errorMessage || e?.message || "";
+    return { err, desc, raw: data };
   },
+  _kcMessage(e) {
+    const s = this._status(e);
+    const { err, desc } = this._msg(e);
 
-  async clearSession() {
-    await storeValue(this.TOKEN_KEY, undefined);
-    await storeValue(this.REFRESH_KEY, undefined);
-    await storeValue(this.USER_KEY, undefined);
-  },
+    // Normalizamos descripciones típicas
+    const d = desc?.toLowerCase() || "";
 
-  // 2) Login
-  async login() {
-    try {
-      const res = await auth_login.run();
-      const access = res?.access_token;
-      const refresh = res?.refresh_token;
-      const user = res?.user;
-
-      if (!access) throw new Error("No llegó access_token");
-      await this.setSession({ access, refresh, user });
-
-      // Opcional: validar sesión con /me
-      try { await this.fetchMe(); } catch (_) {}
-
-      navigateTo("Home");
-      showAlert("Sesión iniciada", "success");
-    } catch (e) {
-      showAlert(`Login falló: ${e.message || e}`, "error");
+    if (err === "invalid_client") return "Cliente inválido o credenciales del cliente incorrectas (client_id/client_secret).";
+    if (err === "unauthorized_client") return "El cliente no está autorizado para este flujo (habilitá Direct Access Grants).";
+    if (err === "invalid_grant") {
+      if (d.includes("account is not fully set up")) return "La cuenta tiene acciones requeridas pendientes (password temporal, verify email, TOTP, profile).";
+      if (d.includes("invalid user credentials")) return "Usuario o contraseña inválidos.";
+      if (d.includes("disabled")) return "El usuario está deshabilitado o bloqueado.";
+      return "Grant inválido (revisá usuario/contraseña y estado del usuario).";
     }
+    if (err === "invalid_scope") return "Scope inválido. Agregá 'openid email profile' al login.";
+    if (s === 401) return "No autorizado (token inválido o vencido).";
+    if (s === 403) return "Prohibido: el cliente o el usuario no tienen permiso.";
+    if (s === 404) return "Endpoint no encontrado (verificá la URL '/protocol/openid-connect').";
+    if (s >= 500) return "Error del servidor de identidad.";
+    return desc || "Error desconocido.";
   },
 
-  // 3) /me para poblar usuario (si hace falta)
-  async fetchMe() {
-    const me = await auth_me.run();
-    if (!me?.user) throw new Error("No llegó user");
-    await storeValue(this.USER_KEY, me.user);
-    return me.user;
+  async _saveTokens(res) {
+    if (!res || !res.access_token) throw new Error("login: respuesta sin access_token");
+    await storeValue("access_token", res.access_token);
+    if (res.refresh_token) await storeValue("refresh_token", res.refresh_token);
+    const expAt = this._now() + (Number(res.expires_in || 300) * 1000) - this._skewMs;
+    await storeValue("token_exp_at", expAt);
   },
 
-  // 4) Refresh (cuando un query devuelve 401)
-  async refresh() {
-    const rt = appsmith.store[this.REFRESH_KEY];
-    if (!rt) throw new Error("No hay refresh_token");
-    const res = await auth_refresh.run();
-    const access = res?.access_token;
-    const refresh = res?.refresh_token || rt;
-    if (!access) throw new Error("No llegó access_token (refresh)");
-    await this.setSession({ access, refresh });
-    return access;
-  },
-
-  // 5) Asegurar sesión (uso en onPageLoad)
-  async ensure() {
-    const token = appsmith.store[this.TOKEN_KEY];
-    if (!token) {
-      navigateTo("Login");
+  // === Public API ===
+  async login() {
+    // 1) LOGIN
+    let tokens;
+    try {
+      tokens = await Q_login.run();                  // { access_token, refresh_token, ... }
+      await this._saveTokens(tokens);
+    } catch (e) {
+      console.log("Q_login error:", e);
+      showAlert("Login fallido: " + this._kcMessage(e), "error");
       return;
     }
+
+    // 2) NAVEGAR
     try {
-      await this.fetchMe();
+      navigateTo(this.PAGE_HOME);
     } catch (e) {
-      // Intento de refresh y revalidación
+      showAlert("No pude navegar a la página de inicio. Verificá el nombre: " + this.PAGE_HOME, "error");
+      return;
+    }
+
+    // 3) USERINFO (no bloquea)
+    try {
+      const me = await Q_userinfo.run();            // requiere scope=openid email profile en Q_login
+      await storeValue("user", me);
+    } catch (e) {
+      console.log("Q_userinfo warning:", e);
+      showAlert("Login ok, pero /userinfo falló: " + this._kcMessage(e), "warning");
+    }
+  },
+
+  async ensureSession() {
+    const at = appsmith.store.access_token;
+    const exp = Number(appsmith.store.token_exp_at || 0);
+    if (!at) { navigateTo(this.PAGE_LOGIN); return; }
+    if (this._now() > exp) {
       try {
-        await this.refresh();
-        await this.fetchMe();
-      } catch (e2) {
-        await this.clearSession();
-        navigateTo("Login");
+        const r = await Q_refresh.run();
+        await this._saveTokens(r);
+      } catch (e) {
+        console.log("Q_refresh error:", e);
+        await this.logout(true);
       }
     }
   },
 
-  // 6) Wrapper para ejecutar queries protegidos con manejo automático de 401
-  async runWithAuth(queryFn, args = {}) {
+  isLoggedIn() { return !!appsmith.store.access_token; },
+
+  async logout(force = false) {
     try {
-      return await queryFn.run(args);
+      if (!force && appsmith.store.refresh_token) { await Q_logout.run(); }
     } catch (e) {
-      // Si el backend devuelve status, muchos conectores lo exponen en e
-      const message = (e && e.message) || "";
-      const is401 = message.includes("401") || message.includes("Unauthorized");
-      if (!is401) throw e;
-
-      // intentar refresh y reintentar una única vez
-      await this.refresh();
-      return await queryFn.run(args);
+      console.log("Q_logout error:", e);
+    } finally {
+      await storeValue("access_token", null);
+      await storeValue("refresh_token", null);
+      await storeValue("token_exp_at", null);
+      await storeValue("user", null);
+      navigateTo(this.PAGE_LOGIN);
     }
-  },
-
-  // 7) Logout
-  async logout() {
-    try { await auth_logout.run(); } catch (_) {}
-    await this.clearSession();
-    navigateTo("Login");
   }
-};
+}

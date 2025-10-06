@@ -8,16 +8,16 @@
     "pluginType": "JS",
     "variables": [
       {
-        "name": "TOKEN_KEY",
-        "value": "\"auth_token\""
+        "name": "PAGE_HOME",
+        "value": "\"Home\""
       },
       {
-        "name": "REFRESH_KEY",
-        "value": "\"refresh_token\""
+        "name": "PAGE_LOGIN",
+        "value": "\"Authentication\""
       },
       {
-        "name": "USER_KEY",
-        "value": "\"auth_user\""
+        "name": "_skewMs",
+        "value": "15000"
       }
     ]
   }

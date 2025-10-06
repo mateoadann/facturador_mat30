@@ -29,7 +29,7 @@
   "maxDynamicHeight": 9000,
   "minDynamicHeight": 4,
   "minWidth": 450,
-  "originalBottomRow": 23,
+  "originalBottomRow": 20,
   "originalTopRow": 16,
   "overflow": "NONE",
   "parentColumnSpace": 19.5,
@@ -44,7 +44,7 @@
     "label"
   ],
   "shouldTruncate": false,
-  "text": "Welcome back! Please enter your details.",
+  "text": "Bienvenido! Ingrese sus datos.",
   "textAlign": "LEFT",
   "textColor": "#231F20",
   "topRow": 16,
