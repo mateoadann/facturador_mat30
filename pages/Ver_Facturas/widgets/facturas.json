@@ -5,7 +5,7 @@
   "borderColor": "#E0DEDE",
   "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
   "borderWidth": "1",
-  "bottomRow": 92,
+  "bottomRow": 88,
   "boxShadow": "{{appsmith.theme.boxShadow.appBoxShadow}}",
   "canFreezeColumn": true,
   "childStylesheet": {
@@ -166,6 +166,9 @@
     },
     {
       "key": "primaryColumns.fac_fecha_emision.computedValue"
+    },
+    {
+      "key": "isVisible"
     }
   ],
   "dynamicPropertyPathList": [
@@ -177,6 +180,9 @@
     },
     {
       "key": "primaryColumns.EditActions1.isDiscardDisabled"
+    },
+    {
+      "key": "isVisible"
     }
   ],
   "dynamicTriggerPathList": [
@@ -199,7 +205,7 @@
   "inlineEditingSaveOption": "ROW_LEVEL",
   "isLoading": false,
   "isSortable": true,
-  "isVisible": true,
+  "isVisible": "{{tokenValid.isTokenValid()}}",
   "isVisibleDownload": false,
   "isVisibleFilters": false,
   "isVisiblePagination": true,
@@ -217,6 +223,8 @@
   "onAddNewRowSave": "{{Insert_public_facturas1.run(() => {\n            showAlert(\"Successfully created!\");\n            Get_FacturaS.run()\n          }, () => {\n            showAlert(\"Unable to create!\");\n          })}}",
   "onPageChange": "{{\n            Get_FacturaS.run();\n            Total_record_public_facturas1.run()\n          }}",
   "onSort": "{{\n            Get_FacturaS.run();\n            Total_record_public_facturas1.run()\n          }}",
+  "originalBottomRow": 88,
+  "originalTopRow": 12,
   "parentColumnSpace": 19.8125,
   "parentId": "0",
   "parentRowSpace": 10,
@@ -993,7 +1001,7 @@
   "serverSidePaginationEnabled": true,
   "tableData": "{{Get_FacturaS.data}}",
   "textSize": "0.875rem",
-  "topRow": 16,
+  "topRow": 12,
   "totalRecordsCount": "{{Total_record_public_facturas1.data[0].count}}",
   "type": "TABLE_WIDGET_V2",
   "version": 2,

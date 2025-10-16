@@ -1,0 +1,40 @@
+{
+  "gitSyncId": "68a8672a233367326da8b15f_fad02399-fc1b-4c6b-93ee-0b40fc203e16",
+  "id": "Facturar_import_csv",
+  "unpublishedCollection": {
+    "name": "import_csv",
+    "pageId": "Facturar",
+    "pluginId": "js-plugin",
+    "pluginType": "JS",
+    "variables": [
+      {
+        "name": "ENV_DEFAULT",
+        "value": "\"test\""
+      },
+      {
+        "name": "LOGIN_PAGE",
+        "value": "\"Authentication\""
+      },
+      {
+        "name": "FILE_WIDGET_ID",
+        "value": "\"import_file\""
+      },
+      {
+        "name": "MODAL_ID",
+        "value": "\"importar_facturar\""
+      },
+      {
+        "name": "STORE_LAST_RESPONSE_KEY",
+        "value": "\"last_import_response\""
+      },
+      {
+        "name": "STORE_LAST_STATUS_KEY",
+        "value": "\"last_import_status\""
+      },
+      {
+        "name": "STORE_LAST_META_KEY",
+        "value": "\"last_import_meta\""
+      }
+    ]
+  }
+}

@@ -6,6 +6,7 @@
   "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
   "borderWidth": "1",
   "bottomRow": 80,
+  "bottomRowBeforeCollapse": 80,
   "boxShadow": "{{appsmith.theme.boxShadow.appBoxShadow}}",
   "canFreezeColumn": true,
   "childStylesheet": {
@@ -145,6 +146,9 @@
     },
     {
       "key": "primaryColumns.email.computedValue"
+    },
+    {
+      "key": "isVisible"
     }
   ],
   "dynamicPropertyPathList": [
@@ -156,6 +160,9 @@
     },
     {
       "key": "primaryColumns.EditActions1.isDiscardDisabled"
+    },
+    {
+      "key": "isVisible"
     }
   ],
   "dynamicTriggerPathList": [
@@ -181,7 +188,7 @@
   "inlineEditingSaveOption": "ROW_LEVEL",
   "isLoading": false,
   "isSortable": true,
-  "isVisible": true,
+  "isVisible": "{{tokenValid.isTokenValid()}}",
   "isVisibleDownload": false,
   "isVisibleFilters": true,
   "isVisiblePagination": true,
@@ -200,6 +207,8 @@
   "onPageChange": "{{\n            Get_facturar.run();\n            Total_record_public_facturar1.run()\n          }}",
   "onSearchTextChanged": "{{\n            Get_facturar.run();\n            Total_record_public_facturar1.run()\n          }}",
   "onSort": "{{\n            Get_facturar.run();\n            Total_record_public_facturar1.run()\n          }}",
+  "originalBottomRow": 80,
+  "originalTopRow": 18,
   "parentColumnSpace": 17.9375,
   "parentId": "0",
   "parentRowSpace": 10,
@@ -840,6 +849,7 @@
   "tableData": "{{Get_facturar.data}}",
   "textSize": "0.875rem",
   "topRow": 18,
+  "topRowBeforeCollapse": 18,
   "totalRecordsCount": "{{Total_record_public_facturar1.data[0].count}}",
   "type": "TABLE_WIDGET_V2",
   "version": 2,

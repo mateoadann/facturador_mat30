@@ -10,6 +10,10 @@
       {
         "name": "PAGE_LOGIN",
         "value": "\"Authentication\""
+      },
+      {
+        "name": "_storeKeys",
+        "value": "[\"access_token\", \"refresh_token\", \"token_exp_at\", \"user\", \"client_secret\"]"
       }
     ]
   }

@@ -36,7 +36,7 @@
   "parentId": "t23bkl632t",
   "renderMode": "CANVAS",
   "responsiveBehavior": "fill",
-  "rightColumn": 64,
+  "rightColumn": 59,
   "shouldTruncate": false,
   "text": "Ingrese el cuit del facturador",
   "textAlign": "LEFT",

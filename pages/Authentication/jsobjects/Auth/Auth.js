@@ -6,47 +6,54 @@ export default {
 
   // === Utils ===
   _now() { return Date.now(); },
-  _status(e) { return e?.responseMeta?.statusCode ?? e?.statusCode ?? e?.status ?? null; },
+     _status(e) {
+    // Appsmith puede usar statusCode o status
+    return e?.responseMeta?.statusCode
+        ?? e?.responseMeta?.status
+        ?? e?.statusCode
+        ?? e?.status
+        ?? null;
+  },
+
   _msg(e) {
-    const data = e?.data || e?.responseData || {};
-    const err  = (data.error || "").toLowerCase();
-    const desc = (data.error_description || data.errorMessage || e?.message || "").trim();
-    return { err, desc, raw: data };
-  },
-  _kcMessage(e) {
-    const s = this._status(e);
-    const { err, desc } = this._msg(e);
-    const d = (desc || "").toLowerCase();
+    // Intenta distintas variantes de dónde puede venir el body
+    let data = e?.data ?? e?.responseData ?? null;
 
-    // Keycloak / OAuth errores estándar
-    if (err === "invalid_client")        return "Cliente inválido o client_secret incorrecto.";
-    if (err === "unauthorized_client")   return "El cliente no está autorizado para este flujo. Habilitá Direct Access Grants.";
-    if (err === "invalid_grant") {
-      if (d.includes("account is not fully set up")) return "La cuenta tiene acciones requeridas pendientes (password temporal, verify email, TOTP o profile).";
-      if (d.includes("invalid user credentials"))     return "Usuario o contraseña inválidos.";
-      if (d.includes("disabled"))                     return "El usuario está deshabilitado o bloqueado.";
-      if (d.includes("expired"))                      return "La credencial o el token ha expirado.";
-      return "Grant inválido. Revisá credenciales y estado del usuario.";
+    // Si vino como string JSON en responseMeta.body
+    if (!data && typeof e?.responseMeta?.body === "string") {
+      const body = e.responseMeta.body.trim();
+      if (body.startsWith("{") && body.endsWith("}")) {
+        try { data = JSON.parse(body); } catch (_) {}
+      }
     }
-    if (err === "invalid_scope")         return "Scope inválido. Agregá 'openid email profile' al login.";
-    if (err === "access_denied")         return "Acceso denegado. Revisá políticas/roles del usuario.";
-    if (err === "unsupported_grant_type")return "Grant no soportado. Usá 'password' para Direct Access Grants.";
 
-    // HTTP / transporte / configuración
-    if (s === 0 || s === undefined || s === null) {
-      // Appsmith suele poner status 0 en CORS/network
-      if (d.includes("timeout"))         return "Timeout de red. El servidor no respondió a tiempo.";
-      return "Error de red o CORS (endpoint inaccesible o bloqueado).";
+    // Si vino como string JSON en e.data
+    if (!data && typeof e?.data === "string") {
+      const s = e.data.trim();
+      if (s.startsWith("{") && s.endsWith("}")) {
+        try { data = JSON.parse(s); } catch (_) {}
+      }
     }
-    if (s === 400)                        return "Solicitud inválida (revisá body x-www-form-urlencoded y parámetros).";
-    if (s === 401)                        return "No autorizado (token inválido o vencido / header Authorization incorrecto).";
-    if (s === 403)                        return "Prohibido: el cliente o el usuario no tienen permiso.";
-    if (s === 404)                        return "Endpoint no encontrado (verificá '/protocol/openid-connect').";
-    if (s === 405)                        return "Método HTTP no permitido (usá POST para /token, GET para /userinfo).";
-    if (s === 415)                        return "Tipo de contenido no soportado (usá 'application/x-www-form-urlencoded').";
-    if (s >= 500)                         return "Error interno del servidor de identidad.";
-    return desc || "Error desconocido.";
+
+    const err  = (data?.error || "").toLowerCase();
+    const desc = (data?.error_description || data?.errorMessage || e?.message || "").trim();
+    return { err, desc, raw: data ?? e };
   },
+
+ _kcMessage(e) {
+  const s = e?.responseMeta?.statusCode ?? e?.status ?? 0;
+  const msg = (e?.data?.error_description || e?.message || "").toLowerCase();
+
+  if (msg.includes("invalid user") || msg.includes("invalid_grant"))
+    return "Usuario o contraseña inválidos.";
+  if (s === 401 || s === 403)
+    return "No autorizado o sin permisos.";
+  if (s >= 500)
+    return "Error del servidor de autenticación.";
+  if (s === 0)
+    return "Error al iniciar la sesión.";
+  return "Error al iniciar sesión.";
+},
 
   async _saveTokens(res) {
     if (!res || !res.access_token) throw new Error("Login: respuesta sin access_token");
@@ -125,5 +132,21 @@ export default {
       await storeValue("user", null);
       navigateTo(this.PAGE_LOGIN);
     }
+  },
+	isTokenValid() {
+    const at   = appsmith.store.access_token;
+    const exp  = Number(appsmith.store.token_exp_at || 0);
+    const now  = Date.now();
+    return Boolean(at && now < exp);
+  },
+
+  // Útil cuando querés usarlo directamente en Visible y forzar redirect
+  requireSessionForVisible(loginPage = "Authentication") {
+    const onLogin = appsmith?.URL?.pathname?.toLowerCase?.().includes(loginPage.toLowerCase());
+    const ok = this.isTokenValid();
+    if (!ok && !onLogin) navigateTo(loginPage, {}, "SAME_WINDOW");
+    return ok; // Visible=true solo si hay sesión válida
   }
+	
+
 }

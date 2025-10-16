@@ -1,0 +1,11 @@
+{
+  "gitSyncId": "68a8672a233367326da8b15f_587fdced-8972-4932-84e1-51640f20bda5",
+  "id": "Home_tokenValid",
+  "unpublishedCollection": {
+    "name": "tokenValid",
+    "pageId": "Home",
+    "pluginId": "js-plugin",
+    "pluginType": "JS",
+    "variables": []
+  }
+}
