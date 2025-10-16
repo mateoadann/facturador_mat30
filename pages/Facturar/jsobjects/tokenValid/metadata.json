@@ -1,0 +1,11 @@
+{
+  "gitSyncId": "68a8672a233367326da8b15f_f0627cfa-61b9-4a93-a481-0c10d00a9dfe",
+  "id": "Facturar_tokenValid",
+  "unpublishedCollection": {
+    "name": "tokenValid",
+    "pageId": "Facturar",
+    "pluginId": "js-plugin",
+    "pluginType": "JS",
+    "variables": []
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "gitSyncId": "68a8672a233367326da8b15f_5f091747-c6e2-4892-aa4f-4d722a918976",
+  "id": "Receptor_tokenValid",
+  "unpublishedCollection": {
+    "name": "tokenValid",
+    "pageId": "Receptor",
+    "pluginId": "js-plugin",
+    "pluginType": "JS",
+    "variables": []
+  }
+}

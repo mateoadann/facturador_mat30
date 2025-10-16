@@ -1,0 +1,11 @@
+{
+  "gitSyncId": "68a8672a233367326da8b15f_8374ea68-3ca5-46e9-979e-70e7abc6f978",
+  "id": "MisComprobantes_tokenValid",
+  "unpublishedCollection": {
+    "name": "tokenValid",
+    "pageId": "MisComprobantes",
+    "pluginId": "js-plugin",
+    "pluginType": "JS",
+    "variables": []
+  }
+}

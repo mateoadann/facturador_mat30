@@ -26,6 +26,6 @@
     "fullyQualifiedName": "Auth.isLoggedIn",
     "name": "isLoggedIn",
     "pageId": "Authentication",
-    "userSetOnLoad": false
+    "userSetOnLoad": true
   }
 }

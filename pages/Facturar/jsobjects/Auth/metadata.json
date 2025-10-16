@@ -1,0 +1,20 @@
+{
+  "gitSyncId": "68a8672a233367326da8b15f_772b40e1-3605-4dde-861a-a0fbb59b8fc9",
+  "id": "Facturar_Auth",
+  "unpublishedCollection": {
+    "name": "Auth",
+    "pageId": "Facturar",
+    "pluginId": "js-plugin",
+    "pluginType": "JS",
+    "variables": [
+      {
+        "name": "PAGE_LOGIN",
+        "value": "\"Authentication\""
+      },
+      {
+        "name": "_skewMs",
+        "value": "15000"
+      }
+    ]
+  }
+}

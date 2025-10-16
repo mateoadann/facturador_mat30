@@ -1,0 +1,11 @@
+{
+  "gitSyncId": "68a8672a233367326da8b15f_96bc3162-f3aa-4250-980a-280f99ccf581",
+  "id": "Ver_Facturas_tokenValid",
+  "unpublishedCollection": {
+    "name": "tokenValid",
+    "pageId": "Ver_Facturas",
+    "pluginId": "js-plugin",
+    "pluginType": "JS",
+    "variables": []
+  }
+}

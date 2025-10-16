@@ -1,7 +1,7 @@
 {
   "animateLoading": true,
   "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
-  "bottomRow": 6,
+  "bottomRow": 5,
   "boxShadow": "none",
   "configureMenuItems": {
     "config": {
@@ -19,11 +19,17 @@
     },
     {
       "key": "borderRadius"
+    },
+    {
+      "key": "isVisible"
     }
   ],
   "dynamicPropertyPathList": [
     {
       "key": "menuItems.menuItem3.onClick"
+    },
+    {
+      "key": "isVisible"
     }
   ],
   "dynamicTriggerPathList": [
@@ -36,7 +42,7 @@
   "isCompact": false,
   "isDisabled": false,
   "isLoading": false,
-  "isVisible": true,
+  "isVisible": "{{ Auth.isTokenValid() }}",
   "key": "0rwr41fenb",
   "label": "",
   "leftColumn": 52,
