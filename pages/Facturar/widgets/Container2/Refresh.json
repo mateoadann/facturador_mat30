@@ -33,7 +33,7 @@
   "mobileRightColumn": 40,
   "mobileTopRow": 8,
   "needsErrorInfo": false,
-  "onClick": "{{Get_facturar.run();\nTotal_record_public_facturar1.run()}}",
+  "onClick": "{{Get_facturar.run();\nTotal_record_public_facturar1.run();\nQ_userinfo.run().catch(() => {\n  navigateTo('Authentication', {}, 'SAME_WINDOW');\n});}}",
   "parentColumnSpace": 19.8125,
   "parentId": "n05yqombzs",
   "parentRowSpace": 10,

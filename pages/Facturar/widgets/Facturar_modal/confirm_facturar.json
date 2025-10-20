@@ -40,7 +40,7 @@
   "mobileRightColumn": 63,
   "mobileTopRow": 18,
   "needsErrorInfo": false,
-  "onClick": "{{doble_confirmacion.doble_confirmacion();}}",
+  "onClick": "{{doble_confirmacion.doble_confirmacion('prod');}}",
   "originalBottomRow": 22,
   "originalTopRow": 18,
   "parentId": "ae788wd4j6",

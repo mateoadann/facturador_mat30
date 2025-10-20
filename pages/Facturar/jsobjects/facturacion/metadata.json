@@ -1,0 +1,28 @@
+{
+  "gitSyncId": "68a8672a233367326da8b15f_bafd5688-78a0-47f0-8631-08fd4e6f8dca",
+  "id": "Facturar_facturacion",
+  "unpublishedCollection": {
+    "name": "facturacion",
+    "pageId": "Facturar",
+    "pluginId": "js-plugin",
+    "pluginType": "JS",
+    "variables": [
+      {
+        "name": "ENV_DEFAULT",
+        "value": "\"prod\""
+      },
+      {
+        "name": "LOGIN_PAGE",
+        "value": "\"Authentication\""
+      },
+      {
+        "name": "MODAL_ID",
+        "value": "\"Facturar_modal\""
+      },
+      {
+        "name": "LOTE_WIDGET_ID",
+        "value": "\"Lotes_importados\""
+      }
+    ]
+  }
+}

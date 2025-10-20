@@ -9,7 +9,7 @@
     "variables": [
       {
         "name": "ENV_DEFAULT",
-        "value": "\"test\""
+        "value": "\"prod\""
       },
       {
         "name": "LOGIN_PAGE",
@@ -22,18 +22,6 @@
       {
         "name": "MODAL_ID",
         "value": "\"importar_facturar\""
-      },
-      {
-        "name": "STORE_LAST_RESPONSE_KEY",
-        "value": "\"last_import_response\""
-      },
-      {
-        "name": "STORE_LAST_STATUS_KEY",
-        "value": "\"last_import_status\""
-      },
-      {
-        "name": "STORE_LAST_META_KEY",
-        "value": "\"last_import_meta\""
       }
     ]
   }

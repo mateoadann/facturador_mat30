@@ -1,31 +1,28 @@
 export default {
-  async doble_confirmacion() {
-    // No permitas continuar sin seleccionar un lote
-    if (!Lotes_importados.selectedOptionValue) {
-      showAlert('Debes seleccionar un lote antes de continuar.', 'warning');
+  async doble_confirmacion(env = "prod") {
+    const lote = (function(){ try { return Lotes_importados?.selectedOptionValue; } catch { return null; } })();
+    if (!lote) { showAlert("Debes seleccionar un lote antes de continuar.", "warning"); return; }
+
+    const flag = appsmith.store?.confirmar === true;
+    if (!flag) {
+      await storeValue("confirmar", true);
+      const etiqueta = (function(){ try { return Lotes_importados.selectedOptionLabel || lote; } catch { return lote; } })();
+      showAlert(`Procesarás el lote "${etiqueta}". Pulsa de nuevo para confirmar.`, "warning");
       return;
     }
 
-    // Doble confirmación
-    if (!appsmith.store.confirmar) {
-      await storeValue('confirmar', true);
-      const etiqueta = Lotes_importados.selectedOptionLabel || Lotes_importados.selectedOptionValue;
-      showAlert('Procesarás el lote "' + etiqueta + '". Pulsa de nuevo para confirmar.', 'warning');
-      return;
-    }
+    await storeValue("confirmar", false);
 
-    // Segunda pulsación: ejecutamos la consulta dentro de try/catch
-    await storeValue('confirmar', false);
     try {
-      const resultado = await start_facturacion_lote.run();  // Sustituye MiQuery por tu consulta real
-      // Si llegamos aquí la consulta se ejecutó correctamente
-      showAlert('Proceso completado con éxito.', 'success');
-      closeModal(Facturar_modal.name);              // Cierra el modal de confirmación (o el que corresponda)
-      // Limpia los widgets o estados necesarios
-      resetWidget('Lotes_importados');
+      // Llama al runner de facturación (elige entorno aquí)
+      if (String(env).toLowerCase()==="test") {
+        await facturacion.runTest();
+      } else {
+        await facturacion.runProd();
+      }
+      // El propio JS de facturación cierra modal y resetea el widget si todo ok
     } catch (error) {
-      // Si MiQuery falla, se captura aquí
-      showAlert('Ocurrió un error al ejecutar el proceso: ' + (error?.message || error), 'error');
+      showAlert("Ocurrió un error al ejecutar el proceso: " + (error?.message || error), "error");
     }
   }
 };

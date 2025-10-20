@@ -22,7 +22,7 @@
         "key": "body"
       }
     ],
-    "executeOnLoad": true,
+    "executeOnLoad": false,
     "fullyQualifiedName": "Auth.isTokenValid",
     "name": "isTokenValid",
     "pageId": "Authentication",

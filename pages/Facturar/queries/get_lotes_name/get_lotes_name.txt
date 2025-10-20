@@ -2,5 +2,6 @@ SELECT
   lote_nombre,
   COUNT(*) AS cantidad_registros
 FROM facturar
+WHERE status = 'pendiente'
 GROUP BY lote_nombre
 ORDER BY cantidad_registros DESC;

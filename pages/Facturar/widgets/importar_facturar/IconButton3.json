@@ -31,7 +31,7 @@
   "mobileRightColumn": 64,
   "mobileTopRow": 0,
   "needsErrorInfo": false,
-  "onClick": "{{closeModal(importar_facturar.name);}}",
+  "onClick": "{{closeModal(importar_facturar.name).then(() => {\n  resetWidget(\"import_file\", true);\n});}}",
   "parentId": "5mm901z986",
   "renderMode": "CANVAS",
   "responsiveBehavior": "hug",

@@ -33,7 +33,7 @@
   "mobileRightColumn": 28,
   "mobileTopRow": 7,
   "needsErrorInfo": false,
-  "onClick": "{{navigateTo('Ver_Facturas', {}, 'SAME_WINDOW');}}",
+  "onClick": "{{Q_userinfo.run().then(() => {\n  navigateTo('Ver_Facturas', {}, 'SAME_WINDOW');\n}).catch(() => {\n  navigateTo('Authentication', {}, 'SAME_WINDOW');\n});}}",
   "originalBottomRow": 14,
   "originalTopRow": 8,
   "parentColumnSpace": 17.9375,

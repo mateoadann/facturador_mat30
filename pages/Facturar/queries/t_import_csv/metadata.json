@@ -26,7 +26,7 @@
       "headers": [
         {
           "key": "Authorization",
-          "value": "Bearer {{appsmith.store.access_token}}"
+          "value": "{{ appsmith.store.access_token ? 'Bearer ' + appsmith.store.access_token : '' }}"
         },
         {
           "key": "Accept",

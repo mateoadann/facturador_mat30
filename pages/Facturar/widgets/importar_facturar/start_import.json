@@ -33,7 +33,7 @@
   "mobileRightColumn": 63,
   "mobileTopRow": 18,
   "needsErrorInfo": false,
-  "onClick": "{{import_csv.runImport();}}",
+  "onClick": "{{import_csv.runProd();}}",
   "originalBottomRow": 37,
   "originalTopRow": 33,
   "parentId": "5mm901z986",

@@ -1,205 +1,145 @@
 export default {
   // ======= CONFIG =======
-  ENV_DEFAULT: "test",
+  ENV_DEFAULT: "prod",                  // "prod" | "test"
   LOGIN_PAGE: "Authentication",
-
   FILE_WIDGET_ID: "import_file",
   MODAL_ID: "importar_facturar",
-  STORE_LAST_RESPONSE_KEY: "last_import_response",
-  STORE_LAST_STATUS_KEY: "last_import_status",
-  STORE_LAST_META_KEY: "last_import_meta",
 
-  // ======= ENV =======
-  _normalizeEnv(v) {
-    const x = String(v || "").trim().toLowerCase();
-    return (x === "prod" || x === "production") ? "prod" : "test";
-  },
+  // ======= ENV helpers =======
+  _env(v) { v = String(v || "").toLowerCase(); return v === "test" ? "test" : "prod"; },
   currentEnv(overrideEnv) {
-    if (overrideEnv) return this._normalizeEnv(overrideEnv);
-    const stored = appsmith.store?.env_mode;
-    return this._normalizeEnv(stored || this.ENV_DEFAULT);
+    const stored = appsmith.store?.env_mode || this.ENV_DEFAULT;
+    return this._env(overrideEnv || stored);
   },
   async setEnv(env = "test") {
-    const v = this._normalizeEnv(env);
-    await storeValue("env_mode", v);
-    showAlert("Entorno seleccionado: " + v.toUpperCase(), "info");
+    const e = this._env(env);
+    await storeValue("env_mode", e);
+    showAlert(`Entorno seleccionado: ${e.toUpperCase()}`, "info");
   },
 
-  // ======= Helpers =======
-  _hasToken() { return Boolean(appsmith.store?.access_token); },
-  _hasFile() { try { return Boolean(import_file?.files?.[0]); } catch { return false; } },
+  // ======= Utils =======
+  _sleep(ms){ return new Promise(r=>setTimeout(r,ms)); },
+  _reason(d){ return (d && (d.reason || d.error || d.message)) || "sin detalle"; },
+  _imported(d){ const m = String(d?.reason||"").match(/imported\s*:\s*(\d+)/i); return m?Number(m[1]):null; },
 
-  // --- Contrato n8n (solo data) ---
-  _okFromTemplate(d) {
-    if (!d || typeof d !== "object") return false;
-    if (d.success === true) return true;
-    if (String(d.status || "").toLowerCase() === "ok") return true;
-    if (String(d.success_status || "").toLowerCase() === "success" && d.error !== true) return true;
-    // Compat anterior
-    if (d.ok === true || d.status === "success" || d.status === "done") return true;
-    return false;
-  },
-  _isUnauthorized(d) {
-    const code = Number(d?.response_code || 0);
-    const err  = String(d?.error_status || "").toLowerCase();
-    const rsn  = String(d?.reason || "").toLowerCase();
-    return code === 401 || err === "unauthorized" || rsn === "invalid_or_expired_token";
-  },
-  _isInvalidFile(d) {
-    const code = Number(d?.response_code || 0);
-    const rsn  = String(d?.reason || "").toLowerCase();
-    const err  = String(d?.error_status || "").toLowerCase();
-    return code === 400 && (rsn === "invalid_file" || err === "bad request" || err === "bad_request");
-  },
-  _extractImported(d) {
-    // Nuevos: reason: "imported : N"
-    const m = String(d?.reason || "").match(/imported\s*:\s*(\d+)/i);
-    if (m) return Number(m[1]);
-    // Compat anterior
-    if (d?.body?.imported != null) return Number(d.body.imported);
-    if (d?.imported != null) return Number(d.imported);
-    return null;
-  },
-  _extractErrorText(d) {
-    if (!d) return "Error desconocido";
-    if (typeof d === "string") return d;
-    return (
-      d.reason ||
-      d.error ||
-      d.message ||
-      JSON.stringify(d)
-    );
+  // Normaliza cualquier forma de respuesta (string / {data}/ body directo)
+  _normalize(raw, action){
+    let d = raw;
+    // si vino envuelto { data: {...} }
+    if (d && typeof d === "object" && "data" in d && d.data && typeof d.data === "object") d = d.data;
+    // si no hay nada, intentar del action (Appsmith hidrata ahí)
+    if (!d) d = action?.data ?? null;
+    // si vino string, parsear
+    if (typeof d === "string") {
+      const s = d.trim(); if (!s) return null;
+      try { d = JSON.parse(s); } catch { d = { status:"error", success:false, error:true, reason:s }; }
+    }
+    return d;
   },
 
-  _getSelectedQuery(env) {
-    const e = this.currentEnv(env);
-    return e === "test"
-      ? { action: (typeof t_import_csv !== "undefined" ? t_import_csv : null), name: "t_import_csv", env: e }
-      : { action: (typeof p_import_csv !== "undefined" ? p_import_csv : null), name: "p_import_csv", env: e };
+  // Contrato n8n (simple)
+  _ok(d){ return !!(d && (d.success === true || String(d.status||"").toLowerCase()==="ok")); },
+  _unauth(d){
+    const code = Number(d?.response_code||0);
+    const es   = String(d?.error_status||"").toLowerCase();
+    const rs   = String(d?.reason||"").toLowerCase();
+    return code===401 || es==="unauthorized" || rs==="invalid_or_expired_token";
+  },
+  _invalidFile(d){
+    const code = Number(d?.response_code||0);
+    const es   = String(d?.error_status||"").toLowerCase();
+    const rs   = String(d?.reason||"").toLowerCase();
+    return code===400 && (rs==="invalid_file" || es==="bad request" || es==="bad_request");
   },
 
-  // Invoca la query: SIEMPRE leeremos action.data como fuente de verdad.
-  async _invoke(action) {
-    let threw = null;
-    try { await action.run(); } catch (e) { threw = e; }
-    const meta = action?.responseMeta || {};
-    const data = action?.data ?? null; // <- contrato n8n
-    // status para guardar/debug (si viene numérico en template lo usaremos)
-    const response_code = (data && typeof data.response_code !== "undefined")
-      ? Number(data.response_code)
-      : null;
-    return { payload: data, meta, response_code, threw };
+  _query(env){
+    return env==="test"
+      ? { name:"t_import_csv", action:(typeof t_import_csv!=="undefined"? t_import_csv : null) }
+      : { name:"p_import_csv", action:(typeof p_import_csv!=="undefined"? p_import_csv : null) };
   },
 
   // ======= Prechecks =======
-  async _precheck() {
-    if (!this._hasToken()) await Auth.ensureSession();
-    if (!this._hasToken()) {
-      showAlert("No hay sesión activa. Iniciá sesión para continuar.", "error");
+  async _precheck(){
+    if (!appsmith.store?.access_token) await Auth.ensureSession();
+    if (!appsmith.store?.access_token) {
+      showAlert("No hay sesión. Iniciá sesión.", "error");
       navigateTo(this.LOGIN_PAGE, {}, "SAME_WINDOW");
       return false;
     }
-    if (!this._hasFile()) {
-      showAlert("Debés seleccionar un archivo antes de importar.", "warning");
-      return false;
-    }
+    try {
+      if (!import_file?.files?.[0]) { showAlert("Seleccioná un archivo.", "warning"); return false; }
+    } catch { showAlert("Seleccioná un archivo.", "warning"); return false; }
     return true;
   },
 
-  // ======= UI =======
-  async _persist(payload, meta, status) {
-    await storeValue(this.STORE_LAST_RESPONSE_KEY, payload ?? null);
-    await storeValue(this.STORE_LAST_STATUS_KEY, status ?? null);
-    await storeValue(this.STORE_LAST_META_KEY, meta ?? null);
-  },
+  // ======= Core =======
+async runImport(envOverride){
+  if (!(await this._precheck())) return;
 
-  async _onSuccessUI(payload, meta, env) {
-    const imported = this._extractImported(payload);
-    await this._persist(payload, meta, 200);
+  const env = this.currentEnv(envOverride);
+  const { name, action } = this._query(env);
+  if (!action || typeof action.run !== "function") {
+    showAlert(`La query ${name} no existe.`, "error");
+    return;
+  }
 
-    const base = `Importación exitosa (${env.toUpperCase()})`;
-    const msg  = (imported != null) ? `${base}. Registros importados: ${imported}` : base;
-    showAlert(msg, "success");
+  // 1) Primer intento + normalización
+  let bodyRaw;
+  try { bodyRaw = await action.run(); } catch(e){ /* noop */ }
+  let d = this._normalize(bodyRaw, action);
 
-    try { await Get_facturar.run(); }
-    catch (e) {
-      console.warn("Get_facturar error:", e);
-      showAlert("La importación fue exitosa, pero falló la actualización de datos.", "warning");
+  // 🔹 MINI AJUSTE AQUÍ (no dentro de _normalize):
+  // Si la respuesta aún no es "legible" (no tiene campos del contrato),
+  // reintentamos una vez tras ensureSession() y un breve delay.
+  const looksBlank = !d || (
+    typeof d === "object" &&
+    !("status" in d) && !("success" in d) && !("response_code" in d)
+  );
+  if (looksBlank) {
+    await Auth.ensureSession();
+    await this._sleep(50); // da tiempo a que el header tome el nuevo token
+    try { bodyRaw = await action.run(); } catch(e2){ /* noop */ }
+    d = this._normalize(bodyRaw, action);
+  }
+
+  // 2) 401 → refresh + reintento (tu lógica actual)
+  if (this._unauth(d)) {
+    await Auth.ensureSession();
+    await this._sleep(50);
+    try { bodyRaw = await action.run(); } catch(e3){ /* noop */ }
+    d = this._normalize(bodyRaw, action);
+    if (this._unauth(d)) {
+      showAlert(`No autorizado: ${this._reason(d)}`, "error");
+      await Auth.logout(true);
+      navigateTo(this.LOGIN_PAGE, {}, "SAME_WINDOW");
+      return d;
     }
+  }
 
+  // 3) 400 invalid_file
+  if (this._invalidFile(d)) {
+    showAlert(`Archivo inválido: ${this._reason(d)}`, "error");
+    try { resetWidget(this.FILE_WIDGET_ID, true); } catch {}
+    return d;
+  }
+
+  // 4) Éxito
+  if (this._ok(d)) {
+    const n = this._imported(d);
+    const rsn = this._reason(d);
+    showAlert(`Importación exitosa. ${n!=null?`. Registros importados: ${n}`:""}. `, "success");
+    try { await Get_facturar.run(); } catch {}
     try { resetWidget(this.FILE_WIDGET_ID, true); } catch {}
     try { closeModal(this.MODAL_ID); } catch {}
-  },
+    return d;
+  }
 
-  async _onErrorUI(payload, meta, env, prefix = "Error en importación") {
-    const code = Number(payload?.response_code || 0) || null;
-    await this._persist(payload, meta, code);
-    const reason = this._extractErrorText(payload);
-    showAlert(`${prefix} (${env.toUpperCase()}): ${reason}`, "error");
-    console.error("ImportCSV error:", { code, meta, payload });
-  },
-
-  // ======= Core =======
-  async runImport(envOverride) {
-    if (!(await this._precheck())) return;
-
-    const { action, name, env } = this._getSelectedQuery(envOverride);
-    if (!action || typeof action.run !== "function") {
-      await this._onErrorUI({ error: "missing_query", reason: `La query ${name} no está definida.` }, null, env, "Configuración inválida");
-      return;
-    }
-
-    // 1) Primer intento (siempre leer data/meta)
-    let { payload, meta } = await this._invoke(action);
-
-    // 1.a) Archivo inválido (400 / invalid_file) -> mensaje claro + reset file
-    if (this._isInvalidFile(payload)) {
-      try { resetWidget(this.FILE_WIDGET_ID, true); } catch {}
-      await this._onErrorUI(
-        payload,
-        meta,
-        env,
-        "Archivo inválido (no contiene los campos requeridos)"
-      );
-      return;
-    }
-
-    // 1.b) Unauthorized según template -> refresh + reintento 1 vez
-    if (this._isUnauthorized(payload)) {
-      await Auth.ensureSession();
-      ({ payload, meta } = await this._invoke(action));
-
-      if (this._isUnauthorized(payload)) {
-        await this._onErrorUI(payload, meta, env, "No autorizado tras reintento");
-        await Auth.logout(true);
-        navigateTo(this.LOGIN_PAGE, {}, "SAME_WINDOW");
-        return;
-      }
-      // Si el reintento devolvió invalid_file, tratálo ya aquí:
-      if (this._isInvalidFile(payload)) {
-        try { resetWidget(this.FILE_WIDGET_ID, true); } catch {}
-        await this._onErrorUI(
-          payload,
-          meta,
-          env,
-          "Archivo inválido (no contiene los campos requeridos)"
-        );
-        return;
-      }
-    }
-
-    // 2) Éxito según contrato n8n
-    if (this._okFromTemplate(payload)) {
-      await this._onSuccessUI(payload, meta, env);
-      return payload;
-    }
-
-    // 3) Cualquier otro caso = error de negocio (mostramos reason)
-    await this._onErrorUI(payload, meta, env);
-    return payload;
-  },
+  // 5) Genérico
+  showAlert(`Error en importación (${env.toUpperCase()}): ${this._reason(d)}`, "error");
+  return d;
+},
 
   // Atajos
-  async runTest() { return this.runImport("test"); },
-  async runProd() { return this.runImport("prod"); },
+  async runTest(){ return this.runImport("test"); },
+  async runProd(){ return this.runImport("prod"); },
 };

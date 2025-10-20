@@ -32,7 +32,7 @@
   "mobileRightColumn": 47,
   "mobileTopRow": 18,
   "needsErrorInfo": false,
-  "onClick": "{{closeModal(importar_facturar.name);}}",
+  "onClick": "{{closeModal(importar_facturar.name).then(() => {\n  resetWidget(\"import_file\", true);\n});}}",
   "originalBottomRow": 37,
   "originalTopRow": 33,
   "parentId": "5mm901z986",

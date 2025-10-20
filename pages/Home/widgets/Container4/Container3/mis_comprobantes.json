@@ -1,7 +1,7 @@
 {
   "animateLoading": true,
   "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
-  "bottomRow": 7,
+  "bottomRow": 6,
   "boxShadow": "none",
   "buttonColor": "{{appsmith.theme.colors.primaryColor}}",
   "buttonVariant": "PRIMARY",
@@ -32,7 +32,7 @@
   "mobileRightColumn": 16,
   "mobileTopRow": 2,
   "needsErrorInfo": false,
-  "onClick": "{{navigateTo('MisComprobantes', {}, 'SAME_WINDOW');}}",
+  "onClick": "{{navigateTo('MisComprobantes', {}, 'SAME_WINDOW');\nQ_userinfo.run().then(() => {\n  navigateTo('MisComprobantes', {}, 'SAME_WINDOW');\n}).catch(() => {\n  navigateTo('Authentication', {}, 'SAME_WINDOW');\n});}}",
   "parentColumnSpace": 19.5,
   "parentId": "84m980ejdp",
   "parentRowSpace": 10,
