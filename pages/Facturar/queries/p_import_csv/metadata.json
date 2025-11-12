@@ -60,9 +60,9 @@
         "key": "bodyFormData[0].value"
       }
     ],
-    "executeOnLoad": false,
     "name": "p_import_csv",
     "pageId": "Facturar",
+    "runBehaviour": "MANUAL",
     "userSetOnLoad": false
   }
 }

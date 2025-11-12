@@ -22,10 +22,10 @@
         "key": "body"
       }
     ],
-    "executeOnLoad": false,
     "fullyQualifiedName": "import_csv.runTest",
     "name": "runTest",
     "pageId": "Facturar",
+    "runBehaviour": "MANUAL",
     "userSetOnLoad": false
   }
 }

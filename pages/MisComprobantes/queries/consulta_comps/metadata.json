@@ -44,9 +44,9 @@
         "key": "body"
       }
     ],
-    "executeOnLoad": false,
     "name": "consulta_comps",
     "pageId": "MisComprobantes",
+    "runBehaviour": "MANUAL",
     "userSetOnLoad": false
   }
 }

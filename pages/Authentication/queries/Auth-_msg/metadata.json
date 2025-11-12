@@ -26,10 +26,10 @@
         "key": "body"
       }
     ],
-    "executeOnLoad": false,
     "fullyQualifiedName": "Auth._msg",
     "name": "_msg",
     "pageId": "Authentication",
+    "runBehaviour": "MANUAL",
     "userSetOnLoad": false
   }
 }

@@ -26,10 +26,10 @@
         "key": "body"
       }
     ],
-    "executeOnLoad": false,
     "fullyQualifiedName": "import_csv._env",
     "name": "_env",
     "pageId": "Facturar",
+    "runBehaviour": "MANUAL",
     "userSetOnLoad": false
   }
 }

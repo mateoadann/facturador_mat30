@@ -26,10 +26,10 @@
         "key": "body"
       }
     ],
-    "executeOnLoad": false,
     "fullyQualifiedName": "Auth._saveTokens",
     "name": "_saveTokens",
     "pageId": "Facturar",
+    "runBehaviour": "MANUAL",
     "userSetOnLoad": false
   }
 }

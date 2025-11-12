@@ -22,10 +22,10 @@
         "key": "body"
       }
     ],
-    "executeOnLoad": false,
     "fullyQualifiedName": "facturacion.runTest",
     "name": "runTest",
     "pageId": "Facturar",
+    "runBehaviour": "MANUAL",
     "userSetOnLoad": false
   }
 }

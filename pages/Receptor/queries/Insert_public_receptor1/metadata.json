@@ -27,9 +27,9 @@
         "key": "body"
       }
     ],
-    "executeOnLoad": false,
     "name": "Insert_public_receptor1",
     "pageId": "Receptor",
+    "runBehaviour": "MANUAL",
     "userSetOnLoad": false
   }
 }

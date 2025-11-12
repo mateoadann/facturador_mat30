@@ -42,9 +42,9 @@
         "key": "headers[0].value"
       }
     ],
-    "executeOnLoad": false,
     "name": "Q_userinfo",
     "pageId": "Authentication",
+    "runBehaviour": "MANUAL",
     "userSetOnLoad": false
   }
 }

@@ -22,10 +22,10 @@
         "key": "body"
       }
     ],
-    "executeOnLoad": false,
     "fullyQualifiedName": "Auth.login",
     "name": "login",
     "pageId": "Authentication",
+    "runBehaviour": "MANUAL",
     "userSetOnLoad": false
   }
 }

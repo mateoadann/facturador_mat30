@@ -27,9 +27,9 @@
         "key": "body"
       }
     ],
-    "executeOnLoad": false,
     "name": "Update_public_receptor1",
     "pageId": "Receptor",
+    "runBehaviour": "MANUAL",
     "userSetOnLoad": false
   }
 }

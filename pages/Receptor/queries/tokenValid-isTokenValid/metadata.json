@@ -22,10 +22,10 @@
         "key": "body"
       }
     ],
-    "executeOnLoad": false,
     "fullyQualifiedName": "tokenValid.isTokenValid",
     "name": "isTokenValid",
     "pageId": "Receptor",
+    "runBehaviour": "MANUAL",
     "userSetOnLoad": false
   }
 }

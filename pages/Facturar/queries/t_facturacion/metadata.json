@@ -50,9 +50,9 @@
         "key": "body"
       }
     ],
-    "executeOnLoad": false,
     "name": "t_facturacion",
     "pageId": "Facturar",
+    "runBehaviour": "MANUAL",
     "userSetOnLoad": false
   }
 }

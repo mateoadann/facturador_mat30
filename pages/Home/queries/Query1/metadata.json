@@ -22,9 +22,9 @@
       "name": "Sample Database",
       "pluginId": "postgres-plugin"
     },
-    "executeOnLoad": false,
     "name": "Query1",
     "pageId": "Home",
+    "runBehaviour": "MANUAL",
     "userSetOnLoad": false
   }
 }

@@ -27,9 +27,9 @@
         "key": "body"
       }
     ],
-    "executeOnLoad": false,
     "name": "Update_public_facturas1",
     "pageId": "Ver_Facturas",
+    "runBehaviour": "MANUAL",
     "userSetOnLoad": false
   }
 }

@@ -69,9 +69,9 @@
         "key": "bodyFormData[2].value"
       }
     ],
-    "executeOnLoad": false,
     "name": "Q_login",
     "pageId": "Authentication",
+    "runBehaviour": "MANUAL",
     "userSetOnLoad": false
   }
 }

@@ -58,9 +58,9 @@
         "key": "bodyFormData[2].value"
       }
     ],
-    "executeOnLoad": false,
     "name": "Q_refresh",
     "pageId": "Facturar",
+    "runBehaviour": "MANUAL",
     "userSetOnLoad": false
   }
 }

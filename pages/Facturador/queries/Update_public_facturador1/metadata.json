@@ -27,9 +27,9 @@
         "key": "body"
       }
     ],
-    "executeOnLoad": false,
     "name": "Update_public_facturador1",
     "pageId": "Facturador",
+    "runBehaviour": "MANUAL",
     "userSetOnLoad": false
   }
 }

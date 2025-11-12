@@ -22,10 +22,10 @@
         "key": "body"
       }
     ],
-    "executeOnLoad": false,
     "fullyQualifiedName": "ger_cuit_call.buscarYCompletar",
     "name": "buscarYCompletar",
     "pageId": "Facturador",
+    "runBehaviour": "MANUAL",
     "userSetOnLoad": false
   }
 }

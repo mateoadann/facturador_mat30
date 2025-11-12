@@ -22,10 +22,10 @@
         "key": "body"
       }
     ],
-    "executeOnLoad": false,
     "fullyQualifiedName": "tokenValid.isTokenValid",
     "name": "isTokenValid",
     "pageId": "Ver_Facturas",
+    "runBehaviour": "MANUAL",
     "userSetOnLoad": false
   }
 }

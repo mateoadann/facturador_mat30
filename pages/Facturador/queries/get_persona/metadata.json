@@ -44,9 +44,9 @@
         "key": "body"
       }
     ],
-    "executeOnLoad": false,
     "name": "get_persona",
     "pageId": "Facturador",
+    "runBehaviour": "MANUAL",
     "userSetOnLoad": false
   }
 }

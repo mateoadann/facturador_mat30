@@ -44,9 +44,9 @@
         "key": "body"
       }
     ],
-    "executeOnLoad": false,
     "name": "descargar_facturas",
     "pageId": "Ver_Facturas",
+    "runBehaviour": "MANUAL",
     "userSetOnLoad": false
   }
 }

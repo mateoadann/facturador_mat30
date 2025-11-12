@@ -50,9 +50,9 @@
         "key": "bodyFormData[0].value"
       }
     ],
-    "executeOnLoad": false,
     "name": "consulta_masiva_comps",
     "pageId": "MisComprobantes",
+    "runBehaviour": "MANUAL",
     "userSetOnLoad": false
   }
 }
